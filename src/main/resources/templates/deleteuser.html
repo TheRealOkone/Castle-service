@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content>
+    <meta name="author" content>
+    <title>Delete User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+
+</head>
+<body>
+<div class="container my-3">
+    <form class="was-validated" role="form" th:action="@{/admin/deleteuser}" th:method="post" th:object="${user}">
+
+        <select class="selectpicker" multiple name="user" id="user" th:name="user" data-live-search="true" data-width="100%" required>
+            <option th:each="user : ${users}" th:value="${user.id}">
+                <span th:text="${user.id}"></span>
+                <span th:text="${user.username}"></span>
+            </option>
+        </select> <br><br>
+        <input type="submit" class="btn btn-primary" name="Отправить">
+    </form>
+
+    <a href="/admin">Назад</a>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#user').selectpicker({noneSelectedText: 'Выберите пользователя'});
+    });
+</script>
+</body>
+</html>
